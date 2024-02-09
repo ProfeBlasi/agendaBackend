@@ -5,18 +5,33 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Services
 {
-    public class DiaNoLaborableService : IDiaNoLaborableService
+    public class DiaNoLaborableService(Context _context) : IDiaNoLaborableService
     {
-        private readonly Context _context;
-
-        public DiaNoLaborableService(Context context)
-        {
-            _context = context;
-        }
+        public async Task<DiaNoLaborable> GetByIdDiaNoLaborable(int id)
+            => await _context.DiaNoLaborable.FindAsync(id) ?? null!;
 
         public async Task<List<DiaNoLaborable>> GetDiaNoLaborable()
+            => await _context.DiaNoLaborable.ToListAsync();
+
+        public async Task<DiaNoLaborable> PostDiaNoLaborable(DiaNoLaborable diaNoLaborable)
         {
-            return await _context.DiaNoLaborable.ToListAsync();
+            await _context.DiaNoLaborable.AddAsync(diaNoLaborable);
+            await _context.SaveChangesAsync();
+            return diaNoLaborable;
+        }
+
+        public async Task<DiaNoLaborable> UpdateDiaNoLaborable(DiaNoLaborable diaNoLaborable)
+        {
+            _context.DiaNoLaborable.Update(diaNoLaborable);
+            await _context.SaveChangesAsync();
+            return diaNoLaborable;
+        }
+
+        public async Task<DiaNoLaborable> DeleteDiaNoLaborable(DiaNoLaborable diaNoLaborable)
+        {
+            _context.DiaNoLaborable.Remove(diaNoLaborable);
+            await _context.SaveChangesAsync();
+            return diaNoLaborable;
         }
     }
 }

@@ -7,15 +7,8 @@ namespace Application.UseCase.V1.DiaNoLaborableOperations
 {
     public class GetDiaNoLaborableRequest : IRequest<Response<List<DiaNoLaborable>>> { }
 
-    public class GetDiaNoLaborableRequestHandler : IRequestHandler<GetDiaNoLaborableRequest, Response<List<DiaNoLaborable>>>
+    public class GetDiaNoLaborableRequestHandler(IDiaNoLaborableService _service) : IRequestHandler<GetDiaNoLaborableRequest, Response<List<DiaNoLaborable>>>
     {
-        private readonly IDiaNoLaborableService _service;
-
-        public GetDiaNoLaborableRequestHandler(IDiaNoLaborableService service)
-        {
-            _service = service;
-        }
-
         public async Task<Response<List<DiaNoLaborable>>> Handle(GetDiaNoLaborableRequest request, CancellationToken cancellationToken)
         {
             try
