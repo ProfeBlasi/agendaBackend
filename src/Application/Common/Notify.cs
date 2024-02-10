@@ -8,11 +8,11 @@ namespace Application.Common
 {
     public class Notify
     {
-        public string Code { get; set; }
+        public string Code { get; set; } = string.Empty;
 
-        public string Property { get; set; }
+        public string Property { get; set; } = string.Empty;
 
-        public string Message { get; set; }
+        public string Message { get; set; } = string.Empty;
 
         public override string ToString()
         {

@@ -1,20 +1,23 @@
-﻿using Infrastructure.Persistence;
+﻿using Application.Common.Interfaces;
+using Infrastructure.Persistence;
+using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Infrastructure.Boopstrap
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
-            var cone = "workstation id=mateBlasi.mssql.somee.com;packet size=4096;user id=profeblasi_SQLLogin_1;pwd=77i4e5baeu;data source=mateBlasi.mssql.somee.com;persist security info=False;initial catalog=mateBlasi;TrustServerCertificate=True";
+            var cone = "Data Source = NB101025; Initial Catalog = Agenda; Integrated Security = True; TrustServerCertificate=True";
+            //"workstation id=mateBlasi.mssql.somee.com;packet size=4096;user id=profeblasi_SQLLogin_1;pwd=77i4e5baeu;data source=mateBlasi.mssql.somee.com;persist security info=False;initial catalog=mateBlasi;TrustServerCertificate=True";
             services.AddDbContext<Context>(op =>
             {
                 op.UseSqlServer(cone);
             });
             services.AddScopedServices();
+            services.AddTransient(typeof(IGenericEntityService<>), typeof(GenericEntityService<>));
             return services;
         }
     }

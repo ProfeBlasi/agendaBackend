@@ -1,37 +1,37 @@
 ﻿using Domain.Entidades;
+using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence
 {
-    public class Context : DbContext
+    public class Context(DbContextOptions<Context> options) : DbContext(options)
     {
-        public Context(DbContextOptions<Context> options) : base(options){  }
-
-        public DbSet<Asistencia> Asistencia { get; set; }
-        public DbSet<Curso> Curso { get; set; }
-        public DbSet<DiaNoLaborable> DiaNoLaborable { get; set; }
-        public DbSet<EstadoAsistencia> EstadoAsistencia { get; set; }
-        public DbSet<Estudiante> Estudiante { get; set; }
-        public DbSet<EstudianteEvaluacion> EstudianteEvaluacion { get; set; }
-        public DbSet<EstudianteObservaciones> EstudianteObservaciones { get; set; }
-        public DbSet<EstudiantePeriodo> EstudiantePeriodo { get; set; }
-        public DbSet<Evaluacion> Evaluacion { get; set; }
-        public DbSet<Observaciones> Observaciones { get; set; }
-        public DbSet<Periodo> Periodo { get; set; }
-        public DbSet<Recordatorio> Recordatorio { get; set; }
+        public DbSet<Attendance> Attendance { get; set; }
+        public DbSet<Course> Course { get; set; }
+        public DbSet<Holiday> Holiday { get; set; }
+        public DbSet<AssistanceStatus> AssistanceStatus { get; set; }
+        public DbSet<Student> Student { get; set; }
+        public DbSet<StudentTest> StudentTest { get; set; }
+        public DbSet<StudentObservation> StudentObservation { get; set; }
+        public DbSet<StudentPeriod> StudentPeriod { get; set; }
+        public DbSet<StudentCourse> StudentCourse { get; set; }
+        public DbSet<Test> Test { get; set; }
+        public DbSet<Observations> Observations { get; set; }
+        public DbSet<Period> Period { get; set; }
+        public DbSet<Reminder> Reminder { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Estudiante>()
-                .Property(e => e.Promedio)
+            modelBuilder.Entity<Student>()
+                .Property(e => e.Average)
                 .HasColumnType("decimal(18, 2)");
 
-            modelBuilder.Entity<EstudianteEvaluacion>()
-                .Property(e => e.Calificacion)
+            modelBuilder.Entity<StudentTest>()
+                .Property(e => e.Qualification)
                 .HasColumnType("decimal(18, 2)");
 
-            modelBuilder.Entity<EstudiantePeriodo>()
-                .Property(e => e.Calificacion)
+            modelBuilder.Entity<StudentPeriod>()
+                .Property(e => e.Qualification)
                 .HasColumnType("decimal(18, 2)");
         }
     }
