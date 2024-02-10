@@ -1,5 +1,5 @@
-﻿using Application.Common.Interfaces;
-using Application.Common;
+﻿using Application.Common;
+using Application.Common.Interfaces;
 using Domain.Entidades;
 using MediatR;
 
@@ -7,7 +7,7 @@ namespace Application.UseCase.V1.PeriodOperations;
 
 public class GetPeriodRequest : IRequest<Response<List<Period>>> { }
 
-public class GetRequestHandler(IPeriodService _service) : IRequestHandler<GetPeriodRequest, Response<List<Period>>>
+public class GetRequestHandler(IGenericRepository<Period> _service) : IRequestHandler<GetPeriodRequest, Response<List<Period>>>
 {
     public async Task<Response<List<Period>>> Handle(GetPeriodRequest request, CancellationToken cancellationToken)
     {
@@ -35,7 +35,7 @@ public class GetByIdPeriodRequest : IRequest<Response<Period>>
     public int Id { get; set; }
 }
 
-public class GetByIdRequestHandler(IPeriodService _service) : IRequestHandler<GetByIdPeriodRequest, Response<Period>>
+public class GetByIdRequestHandler(IGenericRepository<Period> _service) : IRequestHandler<GetByIdPeriodRequest, Response<Period>>
 {
     public async Task<Response<Period>> Handle(GetByIdPeriodRequest request, CancellationToken cancellationToken)
     {
@@ -75,7 +75,7 @@ public class UpdatePeriodRequest : IRequest<Response<Period>>
     public DateTime End { get; set; }
 }
 
-public class UpdateRequestHandler(IPeriodService _service) : IRequestHandler<UpdatePeriodRequest, Response<Period>>
+public class UpdateRequestHandler(IGenericRepository<Period> _service) : IRequestHandler<UpdatePeriodRequest, Response<Period>>
 {
     public async Task<Response<Period>> Handle(UpdatePeriodRequest request, CancellationToken cancellationToken)
     {
@@ -119,7 +119,7 @@ public class PostPeriodRequest : IRequest<Response<Period>>
     public DateTime End { get; set; }
 }
 
-public class PostRequestHandler(IPeriodService _service) : IRequestHandler<PostPeriodRequest, Response<Period>>
+public class PostRequestHandler(IGenericRepository<Period> _service) : IRequestHandler<PostPeriodRequest, Response<Period>>
 {
     public async Task<Response<Period>> Handle(PostPeriodRequest request, CancellationToken cancellationToken)
     {
@@ -154,7 +154,7 @@ public class DeletePeriodRequest : IRequest<Response<Period>>
     public int Id { get; set; }
 }
 
-public class DeleteRequestHandler(IPeriodService _service) : IRequestHandler<DeletePeriodRequest, Response<Period>>
+public class DeleteRequestHandler(IGenericRepository<Period> _service) : IRequestHandler<DeletePeriodRequest, Response<Period>>
 {
     public async Task<Response<Period>> Handle(DeletePeriodRequest request, CancellationToken cancellationToken)
     {

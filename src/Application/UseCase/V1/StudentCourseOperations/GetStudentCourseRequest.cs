@@ -1,14 +1,13 @@
-﻿using Application.Common.Interfaces;
-using Application.Common;
-using Domain.Entidades;
-using MediatR;
+﻿using Application.Common;
+using Application.Common.Interfaces;
 using Domain.Entities;
+using MediatR;
 
 namespace Application.UseCase.V1.StudentCourseOperations;
 
 public class GetStudentCourseRequest : IRequest<Response<List<StudentCourse>>> { }
 
-public class GetRequestHandler(IStudentCourseService _service) : IRequestHandler<GetStudentCourseRequest, Response<List<StudentCourse>>>
+public class GetRequestHandler(IGenericRepository<StudentCourse> _service) : IRequestHandler<GetStudentCourseRequest, Response<List<StudentCourse>>>
 {
     public async Task<Response<List<StudentCourse>>> Handle(GetStudentCourseRequest request, CancellationToken cancellationToken)
     {
@@ -36,7 +35,7 @@ public class GetByIdStudentCourseRequest : IRequest<Response<StudentCourse>>
     public int Id { get; set; }
 }
 
-public class GetByIdRequestHandler(IStudentCourseService _service) : IRequestHandler<GetByIdStudentCourseRequest, Response<StudentCourse>>
+public class GetByIdRequestHandler(IGenericRepository<StudentCourse> _service) : IRequestHandler<GetByIdStudentCourseRequest, Response<StudentCourse>>
 {
     public async Task<Response<StudentCourse>> Handle(GetByIdStudentCourseRequest request, CancellationToken cancellationToken)
     {
@@ -76,7 +75,7 @@ public class UpdateStudentCourseRequest : IRequest<Response<StudentCourse>>
     public decimal Qualification { get; set; }
 }
 
-public class UpdateRequestHandler(IStudentCourseService _service) : IRequestHandler<UpdateStudentCourseRequest, Response<StudentCourse>>
+public class UpdateRequestHandler(IGenericRepository<StudentCourse> _service) : IRequestHandler<UpdateStudentCourseRequest, Response<StudentCourse>>
 {
     public async Task<Response<StudentCourse>> Handle(UpdateStudentCourseRequest request, CancellationToken cancellationToken)
     {
@@ -120,7 +119,7 @@ public class PostStudentCourseRequest : IRequest<Response<StudentCourse>>
     public decimal Qualification { get; set; }
 }
 
-public class PostRequestHandler(IStudentCourseService _service) : IRequestHandler<PostStudentCourseRequest, Response<StudentCourse>>
+public class PostRequestHandler(IGenericRepository<StudentCourse> _service) : IRequestHandler<PostStudentCourseRequest, Response<StudentCourse>>
 {
     public async Task<Response<StudentCourse>> Handle(PostStudentCourseRequest request, CancellationToken cancellationToken)
     {
@@ -155,7 +154,7 @@ public class DeleteStudentCourseRequest : IRequest<Response<StudentCourse>>
     public int Id { get; set; }
 }
 
-public class DeleteRequestHandler(IStudentCourseService _service) : IRequestHandler<DeleteStudentCourseRequest, Response<StudentCourse>>
+public class DeleteRequestHandler(IGenericRepository<StudentCourse> _service) : IRequestHandler<DeleteStudentCourseRequest, Response<StudentCourse>>
 {
     public async Task<Response<StudentCourse>> Handle(DeleteStudentCourseRequest request, CancellationToken cancellationToken)
     {

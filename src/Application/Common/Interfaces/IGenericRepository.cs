@@ -1,6 +1,6 @@
 ﻿namespace Application.Common.Interfaces;
 
-public interface IGenericEntityService<TEntity> where TEntity : class
+public interface IGenericRepository<TEntity> where TEntity : class
 {
     Task<TEntity> GetById(int id);
     Task<List<TEntity>> Get();

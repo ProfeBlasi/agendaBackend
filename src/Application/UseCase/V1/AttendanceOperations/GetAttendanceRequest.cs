@@ -1,5 +1,5 @@
-﻿using Application.Common.Interfaces;
-using Application.Common;
+﻿using Application.Common;
+using Application.Common.Interfaces;
 using Domain.Entidades;
 using MediatR;
 
@@ -7,7 +7,7 @@ namespace Application.UseCase.V1.AttendanceOperations;
 
 public class GetAttendanceRequest : IRequest<Response<List<Attendance>>> { }
 
-public class GetRequestHandler(IAttendanceService _service) : IRequestHandler<GetAttendanceRequest, Response<List<Attendance>>>
+public class GetRequestHandler(IGenericRepository<Attendance> _service) : IRequestHandler<GetAttendanceRequest, Response<List<Attendance>>>
 {
     public async Task<Response<List<Attendance>>> Handle(GetAttendanceRequest request, CancellationToken cancellationToken)
     {
@@ -35,7 +35,7 @@ public class GetByIdAttendanceRequest : IRequest<Response<Attendance>>
     public int Id { get; set; }
 }
 
-public class GetByIdRequestHandler(IAttendanceService _service) : IRequestHandler<GetByIdAttendanceRequest, Response<Attendance>>
+public class GetByIdRequestHandler(IGenericRepository<Attendance> _service) : IRequestHandler<GetByIdAttendanceRequest, Response<Attendance>>
 {
     public async Task<Response<Attendance>> Handle(GetByIdAttendanceRequest request, CancellationToken cancellationToken)
     {
@@ -74,7 +74,7 @@ public class UpdateAttendanceRequest : IRequest<Response<Attendance>>
     public int AssistanceStatusId { get; set; }
 }
 
-public class UpdateRequestHandler(IAttendanceService _service) : IRequestHandler<UpdateAttendanceRequest, Response<Attendance>>
+public class UpdateRequestHandler(IGenericRepository<Attendance> _service) : IRequestHandler<UpdateAttendanceRequest, Response<Attendance>>
 {
     public async Task<Response<Attendance>> Handle(UpdateAttendanceRequest request, CancellationToken cancellationToken)
     {
@@ -116,7 +116,7 @@ public class PostAttendanceRequest : IRequest<Response<Attendance>>
     public int AssistanceStatusId { get; set; }
 }
 
-public class PostRequestHandler(IAttendanceService _service) : IRequestHandler<PostAttendanceRequest, Response<Attendance>>
+public class PostRequestHandler(IGenericRepository<Attendance> _service) : IRequestHandler<PostAttendanceRequest, Response<Attendance>>
 {
     public async Task<Response<Attendance>> Handle(PostAttendanceRequest request, CancellationToken cancellationToken)
     {
@@ -150,7 +150,7 @@ public class DeleteAttendanceRequest : IRequest<Response<Attendance>>
     public int Id { get; set; }
 }
 
-public class DeleteRequestHandler(IAttendanceService _service) : IRequestHandler<DeleteAttendanceRequest, Response<Attendance>>
+public class DeleteRequestHandler(IGenericRepository<Attendance> _service) : IRequestHandler<DeleteAttendanceRequest, Response<Attendance>>
 {
     public async Task<Response<Attendance>> Handle(DeleteAttendanceRequest request, CancellationToken cancellationToken)
     {

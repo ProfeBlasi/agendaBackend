@@ -7,7 +7,7 @@ namespace Application.UseCase.V1.StudentObservationOperations;
 
 public class GetStudentObservationRequest : IRequest<Response<List<StudentObservation>>> { }
 
-public class GetRequestHandler(IStudentObservationService _service) : IRequestHandler<GetStudentObservationRequest, Response<List<StudentObservation>>>
+public class GetRequestHandler(IGenericRepository<StudentObservation> _service) : IRequestHandler<GetStudentObservationRequest, Response<List<StudentObservation>>>
 {
     public async Task<Response<List<StudentObservation>>> Handle(GetStudentObservationRequest request, CancellationToken cancellationToken)
     {
@@ -35,7 +35,7 @@ public class GetByIdStudentObservationRequest : IRequest<Response<StudentObserva
     public int Id { get; set; }
 }
 
-public class GetByIdRequestHandler(IStudentObservationService _service) : IRequestHandler<GetByIdStudentObservationRequest, Response<StudentObservation>>
+public class GetByIdRequestHandler(IGenericRepository<StudentObservation> _service) : IRequestHandler<GetByIdStudentObservationRequest, Response<StudentObservation>>
 {
     public async Task<Response<StudentObservation>> Handle(GetByIdStudentObservationRequest request, CancellationToken cancellationToken)
     {
@@ -75,7 +75,7 @@ public class UpdateStudentObservationRequest : IRequest<Response<StudentObservat
     public string Observation { get; set; } = string.Empty;
 }
 
-public class UpdateRequestHandler(IStudentObservationService _service) : IRequestHandler<UpdateStudentObservationRequest, Response<StudentObservation>>
+public class UpdateRequestHandler(IGenericRepository<StudentObservation> _service) : IRequestHandler<UpdateStudentObservationRequest, Response<StudentObservation>>
 {
     public async Task<Response<StudentObservation>> Handle(UpdateStudentObservationRequest request, CancellationToken cancellationToken)
     {
@@ -119,7 +119,7 @@ public class PostStudentObservationRequest : IRequest<Response<StudentObservatio
     public string Observation { get; set; } = string.Empty;
 }
 
-public class PostRequestHandler(IStudentObservationService _service) : IRequestHandler<PostStudentObservationRequest, Response<StudentObservation>>
+public class PostRequestHandler(IGenericRepository<StudentObservation> _service) : IRequestHandler<PostStudentObservationRequest, Response<StudentObservation>>
 {
     public async Task<Response<StudentObservation>> Handle(PostStudentObservationRequest request, CancellationToken cancellationToken)
     {
@@ -154,7 +154,7 @@ public class DeleteStudentObservationRequest : IRequest<Response<StudentObservat
     public int Id { get; set; }
 }
 
-public class DeleteRequestHandler(IStudentObservationService _service) : IRequestHandler<DeleteStudentObservationRequest, Response<StudentObservation>>
+public class DeleteRequestHandler(IGenericRepository<StudentObservation> _service) : IRequestHandler<DeleteStudentObservationRequest, Response<StudentObservation>>
 {
     public async Task<Response<StudentObservation>> Handle(DeleteStudentObservationRequest request, CancellationToken cancellationToken)
     {

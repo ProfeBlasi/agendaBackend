@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Services;
 
-public class GenericEntityService<TEntity>(Context _context) : IGenericEntityService<TEntity> where TEntity : class
+public class GenericRepository<TEntity>(Context _context) : IGenericRepository<TEntity> where TEntity : class
 {
     public async Task<TEntity> GetById(int id)
         => await _context.Set<TEntity>().FindAsync(id) ?? throw new NullReferenceException();

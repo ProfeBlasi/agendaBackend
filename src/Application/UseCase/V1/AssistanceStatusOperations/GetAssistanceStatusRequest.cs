@@ -1,6 +1,5 @@
-﻿using Application.Common.Interfaces;
-using Application.Common;
-using Application.UseCase.V1.CourseOperations;
+﻿using Application.Common;
+using Application.Common.Interfaces;
 using Domain.Entidades;
 using MediatR;
 
@@ -8,7 +7,7 @@ namespace Application.UseCase.V1.AssistanceStatusOperations;
 
 public class GetAssistanceStatusRequest : IRequest<Response<List<AssistanceStatus>>> { }
 
-public class GetRequestHandler(IAssistanceStatusService _service) : IRequestHandler<GetAssistanceStatusRequest, Response<List<AssistanceStatus>>>
+public class GetRequestHandler(IGenericRepository<AssistanceStatus> _service) : IRequestHandler<GetAssistanceStatusRequest, Response<List<AssistanceStatus>>>
 {
     public async Task<Response<List<AssistanceStatus>>> Handle(GetAssistanceStatusRequest request, CancellationToken cancellationToken)
     {
@@ -36,7 +35,7 @@ public class GetByIdAssistanceStatusRequest : IRequest<Response<AssistanceStatus
     public int Id { get; set; }
 }
 
-public class GetByIdRequestHandler(IAssistanceStatusService _service) : IRequestHandler<GetByIdAssistanceStatusRequest, Response<AssistanceStatus>>
+public class GetByIdRequestHandler(IGenericRepository<AssistanceStatus> _service) : IRequestHandler<GetByIdAssistanceStatusRequest, Response<AssistanceStatus>>
 {
     public async Task<Response<AssistanceStatus>> Handle(GetByIdAssistanceStatusRequest request, CancellationToken cancellationToken)
     {
@@ -74,7 +73,7 @@ public class UpdateAssistanceStatusRequest : IRequest<Response<AssistanceStatus>
     public string Status { get; set; } = string.Empty;
 }
 
-public class UpdateRequestHandler(IAssistanceStatusService _service) : IRequestHandler<UpdateAssistanceStatusRequest, Response<AssistanceStatus>>
+public class UpdateRequestHandler(IGenericRepository<AssistanceStatus> _service) : IRequestHandler<UpdateAssistanceStatusRequest, Response<AssistanceStatus>>
 {
     public async Task<Response<AssistanceStatus>> Handle(UpdateAssistanceStatusRequest request, CancellationToken cancellationToken)
     {
@@ -115,7 +114,7 @@ public class PostAssistanceStatusRequest : IRequest<Response<AssistanceStatus>>
     public string Status { get; set; } = string.Empty;
 }
 
-public class PostRequestHandler(IAssistanceStatusService _service) : IRequestHandler<PostAssistanceStatusRequest, Response<AssistanceStatus>>
+public class PostRequestHandler(IGenericRepository<AssistanceStatus> _service) : IRequestHandler<PostAssistanceStatusRequest, Response<AssistanceStatus>>
 {
     public async Task<Response<AssistanceStatus>> Handle(PostAssistanceStatusRequest request, CancellationToken cancellationToken)
     {
@@ -148,7 +147,7 @@ public class DeleteAssistanceStatusRequest : IRequest<Response<AssistanceStatus>
     public int Id { get; set; }
 }
 
-public class DeleteRequestHandler(IAssistanceStatusService _service) : IRequestHandler<DeleteAssistanceStatusRequest, Response<AssistanceStatus>>
+public class DeleteRequestHandler(IGenericRepository<AssistanceStatus> _service) : IRequestHandler<DeleteAssistanceStatusRequest, Response<AssistanceStatus>>
 {
     public async Task<Response<AssistanceStatus>> Handle(DeleteAssistanceStatusRequest request, CancellationToken cancellationToken)
     {

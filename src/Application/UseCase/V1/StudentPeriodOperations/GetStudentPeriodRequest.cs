@@ -1,5 +1,5 @@
-﻿using Application.Common.Interfaces;
-using Application.Common;
+﻿using Application.Common;
+using Application.Common.Interfaces;
 using Domain.Entidades;
 using MediatR;
 
@@ -7,7 +7,7 @@ namespace Application.UseCase.V1.StudentPeriodOperations;
 
 public class GetStudentPeriodRequest : IRequest<Response<List<StudentPeriod>>> { }
 
-public class GetRequestHandler(IStudentPeriodService _service) : IRequestHandler<GetStudentPeriodRequest, Response<List<StudentPeriod>>>
+public class GetRequestHandler(IGenericRepository<StudentPeriod> _service) : IRequestHandler<GetStudentPeriodRequest, Response<List<StudentPeriod>>>
 {
     public async Task<Response<List<StudentPeriod>>> Handle(GetStudentPeriodRequest request, CancellationToken cancellationToken)
     {
@@ -35,7 +35,7 @@ public class GetByIdStudentPeriodRequest : IRequest<Response<StudentPeriod>>
     public int Id { get; set; }
 }
 
-public class GetByIdRequestHandler(IStudentPeriodService _service) : IRequestHandler<GetByIdStudentPeriodRequest, Response<StudentPeriod>>
+public class GetByIdRequestHandler(IGenericRepository<StudentPeriod> _service) : IRequestHandler<GetByIdStudentPeriodRequest, Response<StudentPeriod>>
 {
     public async Task<Response<StudentPeriod>> Handle(GetByIdStudentPeriodRequest request, CancellationToken cancellationToken)
     {
@@ -75,7 +75,7 @@ public class UpdateStudentPeriodRequest : IRequest<Response<StudentPeriod>>
     public decimal Qualification { get; set; }
 }
 
-public class UpdateRequestHandler(IStudentPeriodService _service) : IRequestHandler<UpdateStudentPeriodRequest, Response<StudentPeriod>>
+public class UpdateRequestHandler(IGenericRepository<StudentPeriod> _service) : IRequestHandler<UpdateStudentPeriodRequest, Response<StudentPeriod>>
 {
     public async Task<Response<StudentPeriod>> Handle(UpdateStudentPeriodRequest request, CancellationToken cancellationToken)
     {
@@ -119,7 +119,7 @@ public class PostStudentPeriodRequest : IRequest<Response<StudentPeriod>>
     public decimal Qualification { get; set; }
 }
 
-public class PostRequestHandler(IStudentPeriodService _service) : IRequestHandler<PostStudentPeriodRequest, Response<StudentPeriod>>
+public class PostRequestHandler(IGenericRepository<StudentPeriod> _service) : IRequestHandler<PostStudentPeriodRequest, Response<StudentPeriod>>
 {
     public async Task<Response<StudentPeriod>> Handle(PostStudentPeriodRequest request, CancellationToken cancellationToken)
     {
@@ -154,7 +154,7 @@ public class DeleteStudentPeriodRequest : IRequest<Response<StudentPeriod>>
     public int Id { get; set; }
 }
 
-public class DeleteRequestHandler(IStudentPeriodService _service) : IRequestHandler<DeleteStudentPeriodRequest, Response<StudentPeriod>>
+public class DeleteRequestHandler(IGenericRepository<StudentPeriod> _service) : IRequestHandler<DeleteStudentPeriodRequest, Response<StudentPeriod>>
 {
     public async Task<Response<StudentPeriod>> Handle(DeleteStudentPeriodRequest request, CancellationToken cancellationToken)
     {

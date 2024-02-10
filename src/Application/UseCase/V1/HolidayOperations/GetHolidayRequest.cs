@@ -7,7 +7,7 @@ namespace Application.UseCase.V1.HolidayOperations;
 
 public class GetHolidayRequest : IRequest<Response<List<Holiday>>> { }
 
-public class GetRequestHandler(IHolidayService _service) : IRequestHandler<GetHolidayRequest, Response<List<Holiday>>>
+public class GetRequestHandler(IGenericRepository<Holiday> _service) : IRequestHandler<GetHolidayRequest, Response<List<Holiday>>>
 {
     public async Task<Response<List<Holiday>>> Handle(GetHolidayRequest request, CancellationToken cancellationToken)
     {
@@ -35,7 +35,7 @@ public class GetHolydayByIdRequest : IRequest<Response<Holiday>>
     public int Id { get; set; }
 }
 
-public class GetByIdRequestHandler(IHolidayService _service) : IRequestHandler<GetHolydayByIdRequest, Response<Holiday>>
+public class GetByIdRequestHandler(IGenericRepository<Holiday> _service) : IRequestHandler<GetHolydayByIdRequest, Response<Holiday>>
 {
     public async Task<Response<Holiday>> Handle(GetHolydayByIdRequest request, CancellationToken cancellationToken)
     {
@@ -75,7 +75,7 @@ public class UpdateHolidayRequest : IRequest<Response<Holiday>>
     public string Descripcion { get; set; } = string.Empty;
 }
 
-public class UpdateRequestHandler(IHolidayService _service) : IRequestHandler<UpdateHolidayRequest, Response<Holiday>>
+public class UpdateRequestHandler(IGenericRepository<Holiday> _service) : IRequestHandler<UpdateHolidayRequest, Response<Holiday>>
 {
     public async Task<Response<Holiday>> Handle(UpdateHolidayRequest request, CancellationToken cancellationToken)
     {
@@ -119,7 +119,7 @@ public class PostHolidayRequest : IRequest<Response<Holiday>>
     public string Descripcion { get; set; } = string.Empty;
 }
 
-public class PostHolidayRequestHandler(IHolidayService _service) : IRequestHandler<PostHolidayRequest, Response<Holiday>>
+public class PostHolidayRequestHandler(IGenericRepository<Holiday> _service) : IRequestHandler<PostHolidayRequest, Response<Holiday>>
 {
     public async Task<Response<Holiday>> Handle(PostHolidayRequest request, CancellationToken cancellationToken)
     {
@@ -154,7 +154,7 @@ public class DeleteHolidayRequest : IRequest<Response<Holiday>>
     public int Id { get; set; }
 }
 
-public class DeleteRequestHandler(IHolidayService _service) : IRequestHandler<DeleteHolidayRequest, Response<Holiday>>
+public class DeleteRequestHandler(IGenericRepository<Holiday> _service) : IRequestHandler<DeleteHolidayRequest, Response<Holiday>>
 {
     public async Task<Response<Holiday>> Handle(DeleteHolidayRequest request, CancellationToken cancellationToken)
     {

@@ -1,5 +1,5 @@
-﻿using Application.Common.Interfaces;
-using Application.Common;
+﻿using Application.Common;
+using Application.Common.Interfaces;
 using Domain.Entidades;
 using MediatR;
 
@@ -7,7 +7,7 @@ namespace Application.UseCase.V1.StudentOperations;
 
 public class GetStudentRequest : IRequest<Response<List<Student>>> { }
 
-public class GetRequestHandler(IStudentService _service) : IRequestHandler<GetStudentRequest, Response<List<Student>>>
+public class GetRequestHandler(IGenericRepository<Student> _service) : IRequestHandler<GetStudentRequest, Response<List<Student>>>
 {
     public async Task<Response<List<Student>>> Handle(GetStudentRequest request, CancellationToken cancellationToken)
     {
@@ -35,7 +35,7 @@ public class GetByIdStudentRequest : IRequest<Response<Student>>
     public int Id { get; set; }
 }
 
-public class GetByIdRequestHandler(IStudentService _service) : IRequestHandler<GetByIdStudentRequest, Response<Student>>
+public class GetByIdRequestHandler(IGenericRepository<Student> _service) : IRequestHandler<GetByIdStudentRequest, Response<Student>>
 {
     public async Task<Response<Student>> Handle(GetByIdStudentRequest request, CancellationToken cancellationToken)
     {
@@ -82,7 +82,7 @@ public class UpdateStudentRequest : IRequest<Response<Student>>
     public decimal Average { get; set; }
 }
 
-public class UpdateRequestHandler(IStudentService _service) : IRequestHandler<UpdateStudentRequest, Response<Student>>
+public class UpdateRequestHandler(IGenericRepository<Student> _service) : IRequestHandler<UpdateStudentRequest, Response<Student>>
 {
     public async Task<Response<Student>> Handle(UpdateStudentRequest request, CancellationToken cancellationToken)
     {
@@ -139,7 +139,7 @@ public class PostStudentRequest : IRequest<Response<Student>>
     public decimal Average { get; set; }
 }
 
-public class PostRequestHandler(IStudentService _service) : IRequestHandler<PostStudentRequest, Response<Student>>
+public class PostRequestHandler(IGenericRepository<Student> _service) : IRequestHandler<PostStudentRequest, Response<Student>>
 {
     public async Task<Response<Student>> Handle(PostStudentRequest request, CancellationToken cancellationToken)
     {
@@ -181,7 +181,7 @@ public class DeleteStudentRequest : IRequest<Response<Student>>
     public int Id { get; set; }
 }
 
-public class DeleteRequestHandler(IStudentService _service) : IRequestHandler<DeleteStudentRequest, Response<Student>>
+public class DeleteRequestHandler(IGenericRepository<Student> _service) : IRequestHandler<DeleteStudentRequest, Response<Student>>
 {
     public async Task<Response<Student>> Handle(DeleteStudentRequest request, CancellationToken cancellationToken)
     {

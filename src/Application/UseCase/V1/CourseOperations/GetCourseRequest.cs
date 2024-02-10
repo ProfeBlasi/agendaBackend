@@ -1,5 +1,5 @@
-﻿using Application.Common.Interfaces;
-using Application.Common;
+﻿using Application.Common;
+using Application.Common.Interfaces;
 using Domain.Entidades;
 using MediatR;
 
@@ -7,7 +7,7 @@ namespace Application.UseCase.V1.CourseOperations;
 
 public class GetCourseRequest : IRequest<Response<List<Course>>> { }
 
-public class GetRequestHandler(ICourseService _service) : IRequestHandler<GetCourseRequest, Response<List<Course>>>
+public class GetRequestHandler(IGenericRepository<Course> _service) : IRequestHandler<GetCourseRequest, Response<List<Course>>>
 {
     public async Task<Response<List<Course>>> Handle(GetCourseRequest request, CancellationToken cancellationToken)
     {
@@ -35,7 +35,7 @@ public class GetByIdCourseRequest : IRequest<Response<Course>>
     public int Id { get; set; }
 }
 
-public class GetByIdRequestHandler(ICourseService _service) : IRequestHandler<GetByIdCourseRequest, Response<Course>>
+public class GetByIdRequestHandler(IGenericRepository<Course> _service) : IRequestHandler<GetByIdCourseRequest, Response<Course>>
 {
     public async Task<Response<Course>> Handle(GetByIdCourseRequest request, CancellationToken cancellationToken)
     {
@@ -76,7 +76,7 @@ public class UpdateCourseRequest : IRequest<Response<Course>>
     public string School { get; set; } = string.Empty;
 }
 
-public class UpdateRequestHandler(ICourseService _service) : IRequestHandler<UpdateCourseRequest, Response<Course>>
+public class UpdateRequestHandler(IGenericRepository<Course> _service) : IRequestHandler<UpdateCourseRequest, Response<Course>>
 {
     public async Task<Response<Course>> Handle(UpdateCourseRequest request, CancellationToken cancellationToken)
     {
@@ -122,7 +122,7 @@ public class PostCourseRequest : IRequest<Response<Course>>
     public string School { get; set; } = string.Empty;
 }
 
-public class PostRequestHandler(ICourseService _service) : IRequestHandler<PostCourseRequest, Response<Course>>
+public class PostRequestHandler(IGenericRepository<Course> _service) : IRequestHandler<PostCourseRequest, Response<Course>>
 {
     public async Task<Response<Course>> Handle(PostCourseRequest request, CancellationToken cancellationToken)
     {
@@ -158,7 +158,7 @@ public class DeleteCourseRequest : IRequest<Response<Course>>
     public int Id { get; set; }
 }
 
-public class DeleteRequestHandler(ICourseService _service) : IRequestHandler<DeleteCourseRequest, Response<Course>>
+public class DeleteRequestHandler(IGenericRepository<Course> _service) : IRequestHandler<DeleteCourseRequest, Response<Course>>
 {
     public async Task<Response<Course>> Handle(DeleteCourseRequest request, CancellationToken cancellationToken)
     {

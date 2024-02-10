@@ -1,5 +1,5 @@
-﻿using Application.Common.Interfaces;
-using Application.Common;
+﻿using Application.Common;
+using Application.Common.Interfaces;
 using Domain.Entidades;
 using MediatR;
 
@@ -7,7 +7,7 @@ namespace Application.UseCase.V1.StudentTestOperations;
 
 public class GetStudentTestRequest : IRequest<Response<List<StudentTest>>> { }
 
-public class GetRequestHandler(IStudentTestService _service) : IRequestHandler<GetStudentTestRequest, Response<List<StudentTest>>>
+public class GetRequestHandler(IGenericRepository<StudentTest> _service) : IRequestHandler<GetStudentTestRequest, Response<List<StudentTest>>>
 {
     public async Task<Response<List<StudentTest>>> Handle(GetStudentTestRequest request, CancellationToken cancellationToken)
     {
@@ -35,7 +35,7 @@ public class GetByIdStudentTestRequest : IRequest<Response<StudentTest>>
     public int Id { get; set; }
 }
 
-public class GetByIdRequestHandler(IStudentTestService _service) : IRequestHandler<GetByIdStudentTestRequest, Response<StudentTest>>
+public class GetByIdRequestHandler(IGenericRepository<StudentTest> _service) : IRequestHandler<GetByIdStudentTestRequest, Response<StudentTest>>
 {
     public async Task<Response<StudentTest>> Handle(GetByIdStudentTestRequest request, CancellationToken cancellationToken)
     {
@@ -75,7 +75,7 @@ public class UpdateStudentTestRequest : IRequest<Response<StudentTest>>
     public decimal Qualification { get; set; }
 }
 
-public class UpdateRequestHandler(IStudentTestService _service) : IRequestHandler<UpdateStudentTestRequest, Response<StudentTest>>
+public class UpdateRequestHandler(IGenericRepository<StudentTest> _service) : IRequestHandler<UpdateStudentTestRequest, Response<StudentTest>>
 {
     public async Task<Response<StudentTest>> Handle(UpdateStudentTestRequest request, CancellationToken cancellationToken)
     {
@@ -119,7 +119,7 @@ public class PostStudentTestRequest : IRequest<Response<StudentTest>>
     public decimal Qualification { get; set; }
 }
 
-public class PostRequestHandler(IStudentTestService _service) : IRequestHandler<PostStudentTestRequest, Response<StudentTest>>
+public class PostRequestHandler(IGenericRepository<StudentTest> _service) : IRequestHandler<PostStudentTestRequest, Response<StudentTest>>
 {
     public async Task<Response<StudentTest>> Handle(PostStudentTestRequest request, CancellationToken cancellationToken)
     {
@@ -154,7 +154,7 @@ public class DeleteStudentTestRequest : IRequest<Response<StudentTest>>
     public int Id { get; set; }
 }
 
-public class DeleteRequestHandler(IStudentTestService _service) : IRequestHandler<DeleteStudentTestRequest, Response<StudentTest>>
+public class DeleteRequestHandler(IGenericRepository<StudentTest> _service) : IRequestHandler<DeleteStudentTestRequest, Response<StudentTest>>
 {
     public async Task<Response<StudentTest>> Handle(DeleteStudentTestRequest request, CancellationToken cancellationToken)
     {

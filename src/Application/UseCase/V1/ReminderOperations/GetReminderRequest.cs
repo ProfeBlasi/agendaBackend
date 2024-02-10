@@ -1,5 +1,5 @@
-﻿using Application.Common.Interfaces;
-using Application.Common;
+﻿using Application.Common;
+using Application.Common.Interfaces;
 using Domain.Entidades;
 using MediatR;
 
@@ -7,7 +7,7 @@ namespace Application.UseCase.V1.ReminderOperations;
 
 public class GetReminderRequest : IRequest<Response<List<Reminder>>> { }
 
-public class GetRequestHandler(IReminderService _service) : IRequestHandler<GetReminderRequest, Response<List<Reminder>>>
+public class GetRequestHandler(IGenericRepository<Reminder> _service) : IRequestHandler<GetReminderRequest, Response<List<Reminder>>>
 {
     public async Task<Response<List<Reminder>>> Handle(GetReminderRequest request, CancellationToken cancellationToken)
     {
@@ -35,7 +35,7 @@ public class GetByIdReminderRequest : IRequest<Response<Reminder>>
     public int Id { get; set; }
 }
 
-public class GetByIdRequestHandler(IReminderService _service) : IRequestHandler<GetByIdReminderRequest, Response<Reminder>>
+public class GetByIdRequestHandler(IGenericRepository<Reminder> _service) : IRequestHandler<GetByIdReminderRequest, Response<Reminder>>
 {
     public async Task<Response<Reminder>> Handle(GetByIdReminderRequest request, CancellationToken cancellationToken)
     {
@@ -79,7 +79,7 @@ public class UpdateReminderRequest : IRequest<Response<Reminder>>
     public virtual Course? Course { get; set; }
 }
 
-public class UpdateRequestHandler(IReminderService _service) : IRequestHandler<UpdateReminderRequest, Response<Reminder>>
+public class UpdateRequestHandler(IGenericRepository<Reminder> _service) : IRequestHandler<UpdateReminderRequest, Response<Reminder>>
 {
     public async Task<Response<Reminder>> Handle(UpdateReminderRequest request, CancellationToken cancellationToken)
     {
@@ -130,7 +130,7 @@ public class PostReminderRequest : IRequest<Response<Reminder>>
     public virtual Course? Course { get; set; }
 }
 
-public class PostRequestHandler(IReminderService _service) : IRequestHandler<PostReminderRequest, Response<Reminder>>
+public class PostRequestHandler(IGenericRepository<Reminder> _service) : IRequestHandler<PostReminderRequest, Response<Reminder>>
 {
     public async Task<Response<Reminder>> Handle(PostReminderRequest request, CancellationToken cancellationToken)
     {
@@ -168,7 +168,7 @@ public class DeleteReminderRequest : IRequest<Response<Reminder>>
     public int Id { get; set; }
 }
 
-public class DeleteRequestHandler(IReminderService _service) : IRequestHandler<DeleteReminderRequest, Response<Reminder>>
+public class DeleteRequestHandler(IGenericRepository<Reminder> _service) : IRequestHandler<DeleteReminderRequest, Response<Reminder>>
 {
     public async Task<Response<Reminder>> Handle(DeleteReminderRequest request, CancellationToken cancellationToken)
     {

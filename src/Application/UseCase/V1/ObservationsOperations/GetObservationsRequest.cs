@@ -1,5 +1,5 @@
-﻿using Application.Common.Interfaces;
-using Application.Common;
+﻿using Application.Common;
+using Application.Common.Interfaces;
 using Domain.Entidades;
 using MediatR;
 
@@ -7,7 +7,7 @@ namespace Application.UseCase.V1.ObservationsOperations;
 
 public class GetObservationsRequest : IRequest<Response<List<Observations>>> { }
 
-public class GetRequestHandler(IObservationsService _service) : IRequestHandler<GetObservationsRequest, Response<List<Observations>>>
+public class GetRequestHandler(IGenericRepository<Observations> _service) : IRequestHandler<GetObservationsRequest, Response<List<Observations>>>
 {
     public async Task<Response<List<Observations>>> Handle(GetObservationsRequest request, CancellationToken cancellationToken)
     {
@@ -35,7 +35,7 @@ public class GetByIdObservationsRequest : IRequest<Response<Observations>>
     public int Id { get; set; }
 }
 
-public class GetByIdRequestHandler(IObservationsService _service) : IRequestHandler<GetByIdObservationsRequest, Response<Observations>>
+public class GetByIdRequestHandler(IGenericRepository<Observations> _service) : IRequestHandler<GetByIdObservationsRequest, Response<Observations>>
 {
     public async Task<Response<Observations>> Handle(GetByIdObservationsRequest request, CancellationToken cancellationToken)
     {
@@ -74,7 +74,7 @@ public class UpdateObservationsRequest : IRequest<Response<Observations>>
     public DateTime Date { get; set; }
 }
 
-public class UpdateRequestHandler(IObservationsService _service) : IRequestHandler<UpdateObservationsRequest, Response<Observations>>
+public class UpdateRequestHandler(IGenericRepository<Observations> _service) : IRequestHandler<UpdateObservationsRequest, Response<Observations>>
 {
     public async Task<Response<Observations>> Handle(UpdateObservationsRequest request, CancellationToken cancellationToken)
     {
@@ -116,7 +116,7 @@ public class PostObservationsRequest : IRequest<Response<Observations>>
     public DateTime Date { get; set; }
 }
 
-public class PostRequestHandler(IObservationsService _service) : IRequestHandler<PostObservationsRequest, Response<Observations>>
+public class PostRequestHandler(IGenericRepository<Observations> _service) : IRequestHandler<PostObservationsRequest, Response<Observations>>
 {
     public async Task<Response<Observations>> Handle(PostObservationsRequest request, CancellationToken cancellationToken)
     {
@@ -150,7 +150,7 @@ public class DeleteObservationsRequest : IRequest<Response<Observations>>
     public int Id { get; set; }
 }
 
-public class DeleteRequestHandler(IObservationsService _service) : IRequestHandler<DeleteObservationsRequest, Response<Observations>>
+public class DeleteRequestHandler(IGenericRepository<Observations> _service) : IRequestHandler<DeleteObservationsRequest, Response<Observations>>
 {
     public async Task<Response<Observations>> Handle(DeleteObservationsRequest request, CancellationToken cancellationToken)
     {

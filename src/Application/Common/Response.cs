@@ -4,14 +4,14 @@ namespace Application.Common
 {
     public class Response<T>
     {
-        public T Content { get; set; }
+        public T? Content { get; set; }
 
         public HttpStatusCode StatusCode { get; set; } = HttpStatusCode.OK;
 
 
         public List<Notify> Notifications { get; }
 
-        public bool IsValid => !Notifications.Any();
+        public bool IsValid => Notifications.Count == 0;
 
         public Dictionary<string, string> Headers { get; set; }
 
@@ -19,6 +19,7 @@ namespace Application.Common
         {
             Notifications = [];
             Headers = [];
+            Content = default;
         }
 
         public void AddNotifications(IList<Notify> notifies)

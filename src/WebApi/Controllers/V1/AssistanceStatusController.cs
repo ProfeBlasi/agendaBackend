@@ -1,7 +1,5 @@
 ﻿using Application.UseCase.V1.AssistanceStatusOperations;
-using Application.UseCase.V1.CourseOperations;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers.V1
