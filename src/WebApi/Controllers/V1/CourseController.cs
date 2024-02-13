@@ -1,10 +1,12 @@
 ﻿using Application.UseCase.V1.CourseOperations;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers.V1
 {
     [ApiController]
+    [Authorize]
     [Route("api/[controller]")]
     public class CourseController(IMediator _mediator) : ControllerBase
     {
