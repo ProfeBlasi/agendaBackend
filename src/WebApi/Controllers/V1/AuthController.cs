@@ -3,6 +3,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using WebApi.Common;
 
 namespace WebApi.Controllers.V1
 {
@@ -10,10 +11,10 @@ namespace WebApi.Controllers.V1
     [ApiController]
     public class AuthController : ControllerBase
     {
-        [HttpPost("login")]
+        [HttpPost]
         public IActionResult Login(string user, string pass)
         {
-            if (user == "user" && pass == "admin1234")
+            if (user == JwtCredentials.User && pass == JwtCredentials.Pass)
             {
                 var token = GenerateJwtToken(user);
                 return Ok(new { token });
@@ -24,12 +25,10 @@ namespace WebApi.Controllers.V1
 
         private static string GenerateJwtToken(string username)
         {
-            var key = Encoding.ASCII.GetBytes("2f0b00d33115d2c65e740d2025dce5fb");
+            var key = Encoding.ASCII.GetBytes(JwtCredentials.Key);
             var claims = new Claim[]{ new(ClaimTypes.Name, username) };
             var credentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature);
-            var token = new JwtSecurityToken
-            ("Issuer", "Audiencie", claims, expires: DateTime.Now.AddMinutes(60),
-                signingCredentials: credentials);
+            var token = new JwtSecurityToken(JwtCredentials.Issuer,JwtCredentials.Audience, claims, expires: DateTime.Now.AddMinutes(60),signingCredentials: credentials);
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
